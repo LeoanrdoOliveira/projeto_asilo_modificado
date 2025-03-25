@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asilo - Página Inicial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos do carrossel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .slides {
+            display: flex;
+            width: 300%; /* 3 slides */
+            height: 100%;
+            animation: slide 12s infinite;
+        }
+        .slide {
+            width: 33.33%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 1.5em;
+        }
+        /* Animação automática */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(0); }
+            45% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-33.33%); }
+            78% { transform: translateX(-66.66%); }
+            100% { transform: translateX(-66.66%); }
+        }
+        /* Navegação manual (opcional) */
+        .carousel input {
+            display: none;
+        }
+        .carousel label {
+            position: absolute;
+            bottom: 20px;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .carousel label:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        #label1 { left: calc(50% - 40px); }
+        #label2 { left: calc(50% - 10px); }
+        #label3 { left: calc(50% + 20px); }
+        #slide1:checked ~ .slides { animation: none; transform: translateX(0); }
+        #slide2:checked ~ .slides { animation: none; transform: translateX(-33.33%); }
+        #slide3:checked ~ .slides { animation: none; transform: translateX(-66.66%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo ao Sistema de Gerenciamento do Recanto dos Idosos São Vicente de Paulo</h1>
+        
+        <!-- Carrossel -->
+        <div class="carousel">
+            <input type="radio" name="slide" id="slide1">
+            <input type="radio" name="slide" id="slide2">
+            <input type="radio" name="slide" id="slide3">
+            <div class="slides">
+                <div class="slide" style="background-image: url('https://www.dolcevivere.com.br/blog/wp-content/uploads/2024/10/Lar-de-idosos-2.png');">
+                    Gerencie pacientes com facilidade
+                </div>
+                <div class="slide" style="background-image: url('https://i1.wp.com/gcene.com/wp-content/uploads/2019/06/idosos-devem-manter-se-ativos.jpg?fit=1200%2C628&ssl=1');">
+                    Crie receitas médicas em segundos
+                </div>
+                <div class="slide" style="background-image: url('https://observatorio3setor.org.br/wp-content/uploads/2019/10/idosos-1024x585.jpg');">
+                    Mantenha tudo organizado
+                </div>
+            </div>
+            <label for="slide1" id="label1"></label>
+            <label for="slide2" id="label2"></label>
+            <label for="slide3" id="label3"></label>
+        </div>
+
+        <p>Escolha uma opção abaixo para começar:</p>
+        <a href="{% url 'cadastro_paciente' %}" class="button">Cadastrar Novo Paciente</a>
+        <a href="{% url 'lista_pacientes' %}" class="button">Ver Lista de Pacientes</a>
+        <a href="{% url 'gerar_receita' %}" class="button">Gerar Receita Médica</a>
+    </div>
+</body>
+</html>
